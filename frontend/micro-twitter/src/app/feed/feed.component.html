@@ -1,0 +1,39 @@
+
+<div class="feed-container">
+
+  <div class="create-post">
+    <textarea
+      [(ngModel)]="newPostContent"
+      maxlength="140"
+      rows="3">
+    </textarea>
+
+    <div class="create-footer">
+      <span>{{ newPostContent.length }}/140</span>
+      <button mat-raised-button color="primary"
+      [disabled]="newPostContent.length<14"
+      (click)="createPost()"
+      >Post</button>
+    </div>
+  </div>
+
+   <ul class="posts">
+    <li class="post-header" *ngFor="let post of posts">
+      <app-post [post]="post"></app-post>
+    </li>
+  </ul>
+
+  <div class="pagination">
+  <button (click)="prev()" [disabled]="pageIndex === 0">
+    Previous
+  </button>
+
+  <span>
+    Page {{ pageIndex + 1 }}
+  </span>
+
+  <button (click)="next()" [disabled]="isLastPage()">
+    Next
+  </button>
+</div>
+</div>
